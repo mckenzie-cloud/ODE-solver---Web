@@ -1,0 +1,145 @@
+
+.display {
+    background-color: #fefae0;
+    text-align: center;
+    font-family: math;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.calcButton {
+    margin-top: 10px;
+    width: 100px;
+    height: 36px;
+    align-self: center;
+}
+
+.div-solverInformation {
+    background-color: #e9edc9;
+}
+
+.div-example {
+    background-color: #ccd5ae;
+}
+
+@media screen and (max-width: 600px) {
+    .div-solverInformation  {
+        text-align: justify;
+        padding: 10px;
+    }
+
+    .div-example {
+        text-align: justify;
+        padding: 10px;
+    }
+}
+
+.div-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #CFAE6B;
+    color: #202126;
+    padding: 5px;
+}
+
+.div-parameters {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    padding: 5px;
+    background-color:#202126;
+    color: #CFAE6B;
+    border-radius: 5px;
+}
+
+.div-parameter-member {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.div-setODEbtn {
+    margin-top: 5px;
+}
+
+.div-setInitialValueParameters {
+    justify-items: center;
+    text-align: center;
+    background-color:#202126;
+    color: #CFAE6B;
+    margin-top: 5px;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.div-timeValue {
+    display: flex;
+    flex-direction: row;
+}
+
+.div-ODEInput {
+    display: flex;
+    flex-direction: row;
+}
+
+.div-solutionValue {
+    display: flex;
+    flex-direction: row;
+}
+
+input[type="number"] {
+    width: 200px;
+    height: 20px;
+}
+
+input[type="text"] {
+    width: 250px;
+    height: 20px;
+}
+
+.h5-initialSolutionValueLabel {
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    .div-parameters{
+        display: grid;
+    }
+    .div-ODEInput {
+        display: grid;
+    }
+    .div-timeValue {
+        display: grid;
+    }
+    .div-solutionValue {
+        display: grid;
+    }
+}
+
+footer {
+  padding: 10px;
+  background-color: #faedcd;
+}
+
+.div-references {
+    text-align: justify;
+    color: #202126;
+}
+
+.div-all-right-reserved {
+    text-align: center;
+    color: #202126;
+}
+
+.div-socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+}
+
+.icons {
+    margin: 5px;
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <div class="display" id="mainCanvas">
+        <div>
+            <h3>ODE SOLVER BY MCKENZIE</h3>
+            <p>Solve an initial value problem for a system of ODEs.</p>
+            <p>dy/dt = f(t, y), y(t<sub>0</sub>) = y<sub>0</sub></p>
+        </div>
+
+        <div class="div-solverInformation" id="div-solverInformation">
+            <h4>Description</h4>
+            <p>
+                This solver uses the Dormand & Prince 5(4) method and advanced adaptive time-stepping techniques derived from control theory and digital filter theory.
+            </p>
+            <h4>Parameters</h4>
+            <p>
+                Dimension: refers to the number of system of ODEs to solve.
+            </p>
+            <p>
+                Absolute & Relative tolerance: control accuracy the solver tries to achieve. Here rtol controls a relative accuracy (number of correct digits), while atol controls absolute accuracy (number of correct decimal places). 
+            </p>
+            <p>
+                Timestepping method: stepsize controller algorithms. Recommended controllers for problem types can be found here <a href="#div-references">[3]</a> Page 24 (Table III. Recommended Controllers with Stepsize Low-Pass Filters and their Problem Classes)
+            </p>
+            <p>
+                t<sub>0</sub> & t<sub>f</sub> : the time interval [t<sub>0</sub>, t<sub>f</sub>], integrates the system of ODEs dy/dt = f(t, y) from t<sub>0</sub> to t<sub>f</sub> with initial conditions y<sub>0</sub>.
+            </p>
+        </div>
+
+        <div class="div-example" id="div-example">
+            <h5>To use this solver properly please follow the example carefully.</h5>
+            <div>
+                <h3>Example (Lorenz system): 3-dimensional system of ODEs</h3>
+                <p>The lorenz system can be defined as: </p>
+                <p>dx/dt = a(y - x), dy/dt = x(b - z) - y, dz/dt = xy - cz, where (a = 10, b = 28, and c = 8/3)</p>
+                <p>and we are solving from the interval [t<sub>0</sub> = 0, t<sub>f</sub> = 5] with y(t<sub>0</sub>) = (1, 1, 1)</p>
+                <h4>Now, to use the solver. Do the following</h4>
+                <p>Step 1: Set the dimension to 3 (since we're solving for 3-dim system of ODEs)</p>
+                <p>Step 2: Set the tolerance and the timestepping method (or leave it by its default values)</p>
+                <p>Step 3:
+                    click the button below to set the system of ODEs
+                </p>
+                <p>After that, it will generate an input field. Here, (D[0], D[1], D[2]) represents (dx/dt, dy/dt, dz/dt)</p>
+                <p>Step 4: Input the equation. Note: follow the syntax carefully to avoid any errors. Don't forget the semicolon (;) at the end of each input.</p>
+                <p>D[0] = 10.0 * (Xn[1] - Xn[0]);</p>
+                <p>D[1] = Xn[0] * (28.0 - Xn[2]) - Xn[1];</p>
+                <p>D[2] = Xn[0] * Xn[1] - (8.0/3.0) * Xn[2];</p>
+                <p>Here, (Xn[0], Xn[1], X[2]) corresponds to (x, y, and z) variable respectively in the equation.</p>
+                <p>Step 5: Set the initial value for t<sub>0</sub> = 0, t<sub>f</sub> = 5 and for X<sub>n</sub>(t<sub>0</sub>) to (1, 1, 1). Here, X<sub>n</sub>(t<sub>0</sub>)
+                corresponds to y(t<sub>0</sub>).</p>
+            </div>
+        </div>
+
+        <div class="div-settings" id="div-settings">
+            <h1>Settings</h1>
+            <div class="div-parameters">
+                <div class="div-parameter-member">
+                    <label for="dimensionField">Dimension:</label>
+                    <select name="dimensionField" id="dimensionField">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="div-parameter-member">
+                    <label for="abstol">Absolute tolerance:</label>
+                    <select name="abstol" id="abstol">
+                        <option value="1e-6">1E-6</option>
+                        <option value="1e-7">1E-7</option>
+                        <option value="1e-8">1E-8</option>
+                        <option value="1e-9">1E-9</option>
+                        <option value="1e-10">1E-10</option>
+                        <option value="1e-11">1E-11</option>
+                        <option value="1e-12">1E-12</option>
+                        <option value="1e-13">1E-13</option>
+                        <option value="1e-14">1E-14</option>
+                        <option value="1e-15">1E-15</option>
+                    </select>
+                </div>
+                <div class="div-parameter-member">
+                    <label for="reltol">Relative tolerance:</label>
+                    <select name="reltol" id="reltol">
+                        <option value="1e-4">1E-4</option>
+                        <option value="1e-5">1E-5</option>
+                        <option value="1e-6">1E-6</option>
+                        <option value="1e-7">1E-7</option>
+                        <option value="1e-8">1E-8</option>
+                        <option value="1e-9">1E-9</option>
+                        <option value="1e-10">1E-10</option>
+                        <option value="1e-11">1E-11</option>
+                        <option value="1e-12">1E-12</option>
+                        <option value="1e-13">1E-13</option>
+                        <option value="1e-14">1E-14</option>
+                        <option value="1e-15">1E-15</option>
+                    </select>
+                </div>
+                <div class="div-parameter-member">
+                    <label for="timesteppingMethod">Timestepping method:</label>
+                    <select name="timesteppingMethod" id="timesteppingMethod">
+                        <option value="0">STANDARD</option>
+                        <option value="1">H211PI</option>
+                        <option value="2">H312PID</option>
+                        <option value="3">H211B</option>
+                        <option value="4">H312B</option>
+                        <option value="5">PI-42</option>
+                        <option value="6">H0-321</option>
+                        <option value="7">H321</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="div-setODEbtn">
+                <button class="btnSetODEs" id="btnSetODEs" onclick="setODEs()">Set the system of ODEs</button>
+                <h3>f(t, Xn, D)</h3>
+            </div>
+
+            <div class="div-ODEInput" id="div-ODEInput"></div>
+
+            <div class="div-setInitialValueParameters" id="div-setInitialValueParameters">
+                <h3>Set the Initial Value</h3>
+                <div class="div-timeValue" id="div-timeValue">
+                    <div class="div-parameter-member">
+                        <label for="init_t0value">t<sub>0</sub></label>
+                        <input type="number" id="init_t0value" name="init_t0value" placeholder="ex. 0.0">
+                    </div>
+                    <div class="div-parameter-member">
+                        <label for="init_tFinalvalue">t<sub>f</sub></label>
+                        <input type="number" id="init_tFinalvalue" name="init_tFinalvalue" placeholder="ex. 5.0">
+                    </div>
+                </div>
+
+                <div class="div-solutionValue" id="div-solutionValue">
+                    <h5 class="h5-initialSolutionValueLabel" id="h5-initialSolutionValueLabel"></h5>
+                </div>
+            </div>
+        </div>
+        <button class="calcButton" id="calcButton" onclick="calculate()" disabled>Calculate</button>
+        <p id="statusMessage"></p>
+        <p id="errorReport"></p>
+    </div>
+
+    <div class="div-resultTable" id="div-resultTable"></div>
+    <script src="./js/script.js"></script>
+</body>
+
+<footer>
+    <div class="div-references" id="div-references">
+        <h3>References</h3>
+        <p>
+            [1] J.R. Dormand, & P.J. Prince (1980). A family of embedded Runge-Kutta formulae.
+Journal of Computational and Applied Mathematics, 6(1), 19-26.
+        </p>
+        <p>[2] Gustafsson, K. (1991). Control Theoretic Techniques for Stepsize Selection in Explicit Runge-Kutta Methods. ACM Transactions on Mathematical Software, 17(4), 533-554.</p>
+        <p>[3] Söderlind, G. (2003). Digital filters in adaptive time-stepping. ACM Trans. Math. Softw., 29(1), 1–26.</p>
+        <p>[4] Söderlind, G., & Wang, L. (2006). Adaptive Time-Stepping and Computational Stability. Journal of Computational and Applied Mathematics, 185, 225-243. https://doi.org/10.1016/j.cam.2005.03.008</p>
+        <p>[5] Hairer, Ernst et. al. 𝘚𝘰𝘭𝘷𝘪𝘯𝘨 𝘖𝘳𝘥𝘪𝘯𝘢𝘳𝘺 𝘋𝘪𝘧𝘧𝘦𝘳𝘦𝘯𝘵𝘪𝘢𝘭 𝘌𝘲𝘶𝘢𝘵𝘪𝘰𝘯𝘴 𝘐: 𝘕𝘰𝘯𝘴𝘵𝘪𝘧𝘧 𝘗𝘳𝘰𝘣𝘭𝘦𝘮𝘴, Springer Science & Business Media, 1987, "Automatic Step Size Control" page-167, "Dense Output and Continuous Dormand & Prince Pairs" pp. 188-191.</p>
+    </div>
+    <div class="div-all-right-reserved" id="div-all-right-reserved">
+        <h5>&copy 2025 James "MacKenzie" Regalado | All right reserved</h5>
+    </div>
+    <div class="div-socials" id="div-socials">
+        <p class="icons"><a href="https://www.youtube.com/@MckenzieRegalado27">
+            <img src="./assets/icons/yt-icon.svg" alt="youtube.com" width="32" height="32">
+        </a></p>
+        <p class="icons"><a href="https://github.com/mckenzie-cloud">
+            <img src="./assets/icons/github-icon.svg" alt="github.com" width="32" height="32">
+        </a></p>
+        <p class="icons"><a href="https://www.facebook.com/james.regal.517793">
+            <img src="./assets/icons/facebook-icon.svg" alt="www.facebook.com" width="32" height="32">
+        </a></p>
+        <p class="icons"><a href="https://www.tiktok.com/@codingwithmackenzie">
+            <img src="./assets/icons/tiktok-icon.svg" alt="www.tiktok.com" width="32" height="32">
+        </a></p>
+    </div>
+</footer>
+
+</html>
